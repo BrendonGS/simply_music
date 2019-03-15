@@ -2,9 +2,7 @@ class Api::ChordsController < ApplicationController
 
   def index
     @chords = Chords.all
-
     render 'index.json.jbuilder'
-    
   end
 
   def create
