@@ -11,10 +11,7 @@ class Api::ChordsController < ApplicationController
                       order: params[:order],
                       beats: params[:beats],
                       quality: params[:quality],
-                      inversion: params[:inversion],
-                      substitution: params[:substitution],
-                      seventh: params[:seventh],
-                      ninth: params[:ninth]
+                      inversion: params[:inversion]
                       )
     if @chord.save
       render 'show.json.jbuilder'
