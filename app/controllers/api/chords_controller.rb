@@ -21,7 +21,7 @@ class Api::ChordsController < ApplicationController
   end
 
   def show
-    @chord = chord.find(params[:id])
+    @chord = Chord.find(params[:id])
     render 'show.json.jbuilder'
   end
 
