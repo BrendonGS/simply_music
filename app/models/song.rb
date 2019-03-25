@@ -6,7 +6,7 @@ class Song < ApplicationRecord
     measures_per_line = 2
     formatted_chords = []
 
-    chords.each do |display|
+    chords.order(:created_at).each do |display|
       formatted_chords << display[:quality]
 
       (display[:beats] - 1).times do

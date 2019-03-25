@@ -8,7 +8,7 @@ class Api::SongsController < ApplicationController
 
   def create
     @song = Song.new(
-                        user_id: params[:user_id],
+                        user_id: current_user.id,
                         title: params[:title],
                         artist: params[:artist],
                         lyrics: params[:lyrics],

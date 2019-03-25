@@ -26,19 +26,20 @@ class Api::ChordsController < ApplicationController
   end
 
   def update
-  @product.song_id = params[:song_id] || @product.song_id
-  @product.order = params[:order] || @product.order
-  @product.beats = params[:beats] || @product.beats
-  @product.quality = params[:quality] || @product.quality
-  @product.inversion = params[:inversion] || @product.inversion
-  @product.substitution = params[:substitution] || @product.substitution
-  @product.seventh = params[:seventh] || @product.seventh
-  @product.ninth = params[:ninth] || @product.ninth
-    
+    @chord = Chord.find(params[:id])
+
+    @chord.beats = params[:beats] || @chord.beats
+    @chord.quality = params[:quality] || @chord.quality
+    @chord.inversion = params[:inversion] || @chord.inversion
+
+    @chord.save
+
+    render "show.json.jbuilder"
   end
 
   def destroy
-    @chord = chord.find(params[:id])
+    @chord = Chord.find(params[:id])
+    @chord.destroy
     render json: {message: "Terminated."}
   end
 end

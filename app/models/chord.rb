@@ -2,6 +2,12 @@ class Chord < ApplicationRecord
   belongs_to :song
   has_one :user, through: :song
 
+  validates :beats, presence: true
+  validates :beats, numericality: {greater_than: 0}
+  validates :quality, presence: true
+  validates :inversion, presence: true
+
+
   def flats_conversion(scale_notes)
     flats = {
               'F#' => 'Gb', 
@@ -36,7 +42,7 @@ class Chord < ApplicationRecord
       root.delete!('b')
       temp_position = all_notes.index(root)
       temp_position += 2
-      temp_position -= 11 if temp_position > 11
+      temp_position -= 12 if temp_position > 11
       root = all_notes[temp_position] + '#'
     end
 
@@ -68,4 +74,17 @@ class Chord < ApplicationRecord
     chord << scale_temp[5] if quality.include?("13")
     chord.rotate(inversion)
   end
+
+  def display_notes
+    "#{quality}: #{notes.join(', ')}"
+  end
 end
+
+
+
+# input: Array of chord notes
+# output: Key the chords belong
+
+# Place the chords notes(chord.notes) within an empty array (however many you input)
+# Take the sharps of each chord and return the last sharp of the chord according to all_notes
+# Take the returned sharp and move it up 1 step (in acccordance to steps and all notes)
