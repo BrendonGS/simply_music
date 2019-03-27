@@ -68,7 +68,7 @@ class Chord < ApplicationRecord
     chord << scale_temp[0]
     chord << scale_temp[2]
     chord << scale_temp[4]
-    chord << scale_temp[6] if quality.include?("7")
+    chord << scale_temp[6] if quality.include?("7") 
     chord << scale_temp[1] if quality.include?("9")
     chord << scale_temp[3] if quality.include?("11")
     chord << scale_temp[5] if quality.include?("13")
